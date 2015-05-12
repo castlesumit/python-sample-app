@@ -75,18 +75,10 @@ WSGI_APPLICATION = 'sampleapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-import os
-import urllib.parse
-db_url = urllib.parse.urlsplit(os.environ['DATABASE_URL'])
+import dj_database_url
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': db_url.path[1:],
-        'USER': db_url.username,
-        'PASSWORD': db_url.password,
-        'HOST': db_url.hostname,
-    }
+    'default': dj_database_url.config()
 }
 
 LOGGING = {
